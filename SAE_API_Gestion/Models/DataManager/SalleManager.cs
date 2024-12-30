@@ -20,12 +20,16 @@ namespace SAE_API_Gestion.Models.DataManager
 
         public async Task<ActionResult<IEnumerable<Salle>>> GetAllAsync()
         {
-            return await gestionDbContext.Salles.ToListAsync();
+            return await gestionDbContext.Salles
+                .Include(s => s.Batiment)
+                .Include(s => s.TypeSalle)
+                .ToListAsync();
         }
 
         public async Task<ActionResult<Salle>> GetByIdAsync(int id)
         {
             return await gestionDbContext.Salles
+                .Include(s => s.Batiment)
                 .Include(s => s.TypeSalle) 
                 .FirstOrDefaultAsync(s => s.SalleId == id);
         }
@@ -33,7 +37,10 @@ namespace SAE_API_Gestion.Models.DataManager
 
         public async Task<ActionResult<IEnumerable<Salle>>> GetAllSalleByBatimentAsync(int batid)
         {
-            return await gestionDbContext.Salles.Where(e => e.BatimentId == batid).ToListAsync();
+            return await gestionDbContext.Salles
+                .Include(s => s.Batiment)
+                .Include(s => s.TypeSalle)
+                .Where(e => e.BatimentId == batid).ToListAsync();
         }
 
 
@@ -41,6 +48,8 @@ namespace SAE_API_Gestion.Models.DataManager
         public async Task<ActionResult<Salle>> GetByStringAsync(string str)
         {
             return await gestionDbContext.Salles
+                .Include(s => s.Batiment)
+                .Include(s => s.TypeSalle)
                 .FirstOrDefaultAsync(s => s.Nom == str);
         }
 

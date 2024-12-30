@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using Microsoft.EntityFrameworkCore;
 
 namespace SAE_API_Gestion.Models.EntityFramework;
@@ -13,6 +14,7 @@ public partial class GestionDBContext : DbContext
     public GestionDBContext(DbContextOptions<GestionDBContext> options)
         : base(options)
     {
+
     }
 
     public virtual DbSet<ParametreCapteur> ParametreCapteur { get; set; }

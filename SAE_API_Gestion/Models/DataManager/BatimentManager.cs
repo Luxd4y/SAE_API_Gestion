@@ -20,6 +20,7 @@ namespace SAE_API_Gestion.Models.DataManager
         public async Task<ActionResult<IEnumerable<Batiment>>> GetAllAsync()
         {
             return await _gestionDbContext.Batiments
+                .Include(s => s.Salles)
                 .ToListAsync();
         }
 
@@ -28,6 +29,7 @@ namespace SAE_API_Gestion.Models.DataManager
         public async Task<ActionResult<Batiment>> GetByIdAsync(int id)
         {
             return await _gestionDbContext.Batiments
+                .Include(s => s.Salles)
                 .FirstOrDefaultAsync(b => b.BatimentId == id);
         }
 

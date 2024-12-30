@@ -19,6 +19,7 @@ public partial class Batiment
     public string Nom { get; set; } = null!;
 
     [Column("bat_imagedata")]
+    [NotMapped]
     public byte[]? ImageData { get; set; }
 
     [InverseProperty("Batiment")]

@@ -25,13 +25,13 @@ public partial class Salle
     public string Nom { get; set; } = null!;
 
     [Column("sal_imagedata")]
+    [NotMapped]
     public byte[]? ImageData { get; set; }
 
     [Column("sal_capacite")]
     public int? Capacite { get; set; }
 
     [ForeignKey("BatimentId")]
-    [InverseProperty("Salles")]
     public virtual Batiment? Batiment { get; set; }
 
     [InverseProperty("Salle")]
@@ -44,6 +44,5 @@ public partial class Salle
     public virtual ICollection<Surface> Surfaces { get; set; } = new List<Surface>();
 
     [ForeignKey("TypeSalleId")]
-    [InverseProperty("Salles")]
     public virtual TypeSalle? TypeSalle { get; set; }
 }

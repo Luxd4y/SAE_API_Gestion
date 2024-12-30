@@ -25,7 +25,7 @@ public partial class Salle
     public string Nom { get; set; } = null!;
 
     [Column("sal_imagedata")]
-    [NotMapped]
+    [JsonIgnore]
     public byte[]? ImageData { get; set; }
 
     [Column("sal_capacite")]

@@ -16,16 +16,21 @@ namespace SAE_API_Gestion.Models.DataManager
         }
         public async Task<ActionResult<IEnumerable<TypeSalle>>> GetAllAsync()
         {
-            return await gestionDbContext.TypeSalles.ToListAsync();
+            return await gestionDbContext.TypeSalles
+                .Include(s => s.Salles)
+                .ToListAsync();
         }
         public async Task<ActionResult<TypeSalle>> GetByIdAsync(int id)
         {
-            return await gestionDbContext.TypeSalles.FirstOrDefaultAsync(u => u.TypeSalleId == id);
+            return await gestionDbContext.TypeSalles
+                .Include(s => s.Salles)
+                .FirstOrDefaultAsync(u => u.TypeSalleId == id);
         }
 
         public async Task<ActionResult<TypeSalle>> GetByStringAsync(string str)
         {
             return await gestionDbContext.TypeSalles
+                .Include(s => s.Salles)
                 .FirstOrDefaultAsync(b => b.Nom == str);
         }
 

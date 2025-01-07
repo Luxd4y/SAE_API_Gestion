@@ -66,7 +66,6 @@ namespace SAE_API_Gestion.Models.DataManager
 
             batiment.Nom = entity.Nom;
             batiment.ImageData = entity.ImageData;
-            batiment.Salles = entity.Salles;
 
             _gestionDbContext.Entry(batiment).State = EntityState.Modified;
             await _gestionDbContext.SaveChangesAsync();
@@ -79,9 +78,20 @@ namespace SAE_API_Gestion.Models.DataManager
         {
             if (batiment == null) return;
 
+            var salles = await _gestionDbContext.Salles
+                .Where(s => s.BatimentId == batiment.BatimentId)
+                .ToListAsync();
+
+            if (salles.Any())
+            {
+                _gestionDbContext.Salles.RemoveRange(salles);
+            }
+
             _gestionDbContext.Batiments.Remove(batiment);
+
             await _gestionDbContext.SaveChangesAsync();
         }
+
 
 
     }

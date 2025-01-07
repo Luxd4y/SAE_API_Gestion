@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SAE_API_Gestion.Models.EntityFramework;
 using SAE_API_Gestion.Models.Repository;
 
@@ -69,10 +70,9 @@ public class EquipementController : ControllerBase
         {
             return BadRequest(ModelState);
         }
-
         await _equipementManager.AddAsync(equipement);
+        return CreatedAtAction("GetEquipementById", new { id = equipement.EquipementId }, equipement);
 
-        return CreatedAtAction(nameof(GetEquipementById), new { id = equipement.EquipementId }, equipement);
     }
 
 

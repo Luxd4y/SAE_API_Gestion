@@ -39,6 +39,5 @@ public partial class Equipement
     public virtual ICollection<EquipementInstalle> EquipementInstalles { get; set; } = new List<EquipementInstalle>();
 
     [ForeignKey("TypeEquipementId")]
-    [InverseProperty("Equipements")]
-    public virtual TypeEquipement TypeEquipement { get; set; } = null!;
+    public virtual TypeEquipement? TypeEquipement { get; set; }
 }

@@ -133,7 +133,7 @@ public partial class GestionDBContext : DbContext
             entity.HasKey(e => e.SalleId).HasName("pk_t_e_salle_sal");
 
             entity.HasOne(d => d.Batiment).WithMany(p => p.Salles)
-                .OnDelete(DeleteBehavior.Restrict)
+        .OnDelete(DeleteBehavior.Cascade) 
                 .HasConstraintName("fk_t_e_sall_abrite_t_e_bati");
 
             entity.HasOne(d => d.TypeSalle).WithMany(p => p.Salles)

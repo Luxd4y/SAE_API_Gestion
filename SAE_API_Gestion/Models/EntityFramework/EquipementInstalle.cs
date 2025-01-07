@@ -32,13 +32,13 @@ public partial class EquipementInstalle
 
     [ForeignKey("EquipementId")]
     [InverseProperty("EquipementInstalles")]
-    public virtual Equipement Equipement { get; set; } = null!;
+    public virtual Equipement? Equipement { get; set; }
 
     [ForeignKey("SalleId")]
     [InverseProperty("EquipementInstalles")]
-    public virtual Salle Salle { get; set; } = null!;
+    public virtual Salle? Salle { get; set; } 
 
     [ForeignKey("SurfaceId")]
     [InverseProperty("EquipementInstalles")]
-    public virtual Surface Surface { get; set; } = null!;
+    public virtual Surface? Surface { get; set; } 
 }

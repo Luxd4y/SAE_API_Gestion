@@ -13,9 +13,6 @@ public partial class EquipementInstalle
     [Column("ein_id")]
     public int EquipementInstalleId { get; set; }
 
-    [Column("sal_id")]
-    public int SalleId { get; set; }
-
     [Column("equ_id")]
     public int EquipementId { get; set; }
 
@@ -33,10 +30,6 @@ public partial class EquipementInstalle
     [ForeignKey("EquipementId")]
     [InverseProperty("EquipementInstalles")]
     public virtual Equipement? Equipement { get; set; }
-
-    [ForeignKey("SalleId")]
-    [InverseProperty("EquipementInstalles")]
-    public virtual Salle? Salle { get; set; } 
 
     [ForeignKey("SurfaceId")]
     [InverseProperty("EquipementInstalles")]

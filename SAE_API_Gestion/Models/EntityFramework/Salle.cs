@@ -35,12 +35,6 @@ public partial class Salle
     public virtual Batiment? Batiment { get; set; }
 
     [InverseProperty("Salle")]
-    public virtual ICollection<CapteurInstalle> CapteurInstalles { get; set; } = new List<CapteurInstalle>();
-
-    [InverseProperty("Salle")]
-    public virtual ICollection<EquipementInstalle> EquipementInstalles { get; set; } = new List<EquipementInstalle>();
-
-    [InverseProperty("Salle")]
     public virtual ICollection<Surface> Surfaces { get; set; } = new List<Surface>();
 
     [ForeignKey("TypeSalleId")]

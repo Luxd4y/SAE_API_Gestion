@@ -20,7 +20,6 @@ namespace SAE_API_Gestion.Models.DataManager
         {
             return await gestionDbContext.EquipementInstalles
                 .Include(e => e.Equipement)
-                .Include(e => e.Salle)
                 .Include(e => e.Surface)
                 .ToListAsync();
         }
@@ -29,7 +28,6 @@ namespace SAE_API_Gestion.Models.DataManager
         {
             return await gestionDbContext.EquipementInstalles
                 .Include(e => e.Equipement)
-                .Include(e => e.Salle)
                 .Include(e => e.Surface)
                 .FirstOrDefaultAsync(e => e.EquipementInstalleId == id);
         }
@@ -48,7 +46,6 @@ namespace SAE_API_Gestion.Models.DataManager
         public async Task UpdateAsync(EquipementInstalle equipementInstalle, EquipementInstalle entity)
         {
             gestionDbContext.Entry(equipementInstalle).State = EntityState.Modified;
-            equipementInstalle.SalleId = entity.SalleId;
             equipementInstalle.EquipementId = entity.EquipementId;
             equipementInstalle.SurfaceId = entity.SurfaceId;
             equipementInstalle.PositionX = entity.PositionX;

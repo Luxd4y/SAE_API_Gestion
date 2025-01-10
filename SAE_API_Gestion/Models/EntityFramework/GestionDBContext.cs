@@ -83,10 +83,6 @@ public partial class GestionDBContext : DbContext
                 .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("fk_t_e_capt_associati_t_e_capt");
 
-            entity.HasOne(d => d.Salle).WithMany(p => p.CapteurInstalles)
-                .OnDelete(DeleteBehavior.Restrict)
-                .HasConstraintName("fk_t_e_capt_installer_t_e_sall");
-
             entity.HasOne(d => d.Surface).WithMany(p => p.CapteurInstalles)
                 .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("fk_t_e_capt_associati_t_e_surf");
@@ -108,10 +104,6 @@ public partial class GestionDBContext : DbContext
             entity.HasOne(d => d.Equipement).WithMany(p => p.EquipementInstalles)
                 .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("fk_t_e_equi_associati_t_e_equi");
-
-            entity.HasOne(d => d.Salle).WithMany(p => p.EquipementInstalles)
-                .OnDelete(DeleteBehavior.Restrict)
-                .HasConstraintName("fk_t_e_equi_associati_t_e_sall");
 
             entity.HasOne(d => d.Surface).WithMany(p => p.EquipementInstalles)
                 .OnDelete(DeleteBehavior.Restrict)

@@ -65,8 +65,6 @@ namespace SAE_API_Gestion.Models.DataManager
             salle.Nom = entity.Nom;
             salle.Capacite = entity.Capacite;
             salle.ImageData = entity.ImageData;
-            salle.CapteurInstalles = entity.CapteurInstalles;
-            salle.EquipementInstalles = entity.EquipementInstalles;
             salle.Surfaces = entity.Surfaces;
             await gestionDbContext.SaveChangesAsync();
         }

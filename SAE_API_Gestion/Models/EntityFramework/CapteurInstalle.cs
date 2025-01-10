@@ -19,9 +19,6 @@ public partial class CapteurInstalle
     [Column("cap_id")]
     public int CapteurId { get; set; }
 
-    [Column("sal_id")]
-    public int SalleId { get; set; }
-
     [Column("cin_posx")]
     [Precision(100, 2)]
     public decimal PositionX { get; set; }
@@ -33,10 +30,6 @@ public partial class CapteurInstalle
     [ForeignKey("CapteurId")]
     [InverseProperty("CapteurInstalles")]
     public virtual Capteur Capteur { get; set; } = null!;
-
-    [ForeignKey("SalleId")]
-    [InverseProperty("CapteurInstalles")]
-    public virtual Salle Salle { get; set; } = null!;
 
     [ForeignKey("SurfaceId")]
     [InverseProperty("CapteurInstalles")]

@@ -21,7 +21,6 @@ namespace SAE_API_Gestion.Models.DataManager
         {
             return await _gestionDbContext.CapteurInstalles
                 .Include(ci => ci.Capteur) 
-                .Include(ci => ci.Salle)  
                 .Include(ci => ci.Surface) 
                 .ToListAsync();
         }
@@ -30,7 +29,6 @@ namespace SAE_API_Gestion.Models.DataManager
         {
             var capteurInstalle = await _gestionDbContext.CapteurInstalles
                 .Include(ci => ci.Capteur)
-                .Include(ci => ci.Salle)
                 .Include(ci => ci.Surface)
                 .FirstOrDefaultAsync(ci => ci.CapteurInstalleId == id);
 
@@ -56,11 +54,9 @@ namespace SAE_API_Gestion.Models.DataManager
 
             capteurInstalle.SurfaceId = entity.SurfaceId;
             capteurInstalle.CapteurId = entity.CapteurId;
-            capteurInstalle.SalleId = entity.SalleId;
             capteurInstalle.PositionX = entity.PositionX;
             capteurInstalle.PositionY = entity.PositionY;
             capteurInstalle.Capteur = entity.Capteur;
-            capteurInstalle.Salle = entity.Salle;
             capteurInstalle.Surface = entity.Surface;
 
             _gestionDbContext.Entry(capteurInstalle).State = EntityState.Modified;

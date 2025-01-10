@@ -28,14 +28,12 @@ public partial class Surface
     public decimal Hauteur { get; set; }
 
     [ForeignKey("PositionSurfaceId")]
-    [InverseProperty("Surfaces")]
-    public virtual PositionSurface PositionSurface { get; set; } = null!;
+    public virtual PositionSurface? PositionSurface { get; set; } 
 
     [ForeignKey("SalleId")]
     [InverseProperty("Surfaces")]
-    public virtual Salle Salle { get; set; } = null!;
+    public virtual Salle? Salle { get; set; }
 
-    [InverseProperty("Surface")]
     public virtual ICollection<CapteurInstalle> CapteurInstalles { get; set; } = new List<CapteurInstalle>();
 
     [InverseProperty("Surface")]

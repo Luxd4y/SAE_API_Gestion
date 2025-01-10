@@ -5,7 +5,7 @@ using SAE_API_Gestion.Models.Repository;
 
 namespace SAE_API_Gestion.Models.DataManager
 {
-    public class SurfaceManager : IDataRepository<Surface>
+    public class SurfaceManager : IDataRepository<Surface>, IDataRepositorySurface
     {
         readonly GestionDBContext? gestionDbContext;
         public SurfaceManager() { }
@@ -21,7 +21,7 @@ namespace SAE_API_Gestion.Models.DataManager
         {
             return await gestionDbContext.Surfaces.FirstOrDefaultAsync(u => u.SurfaceId == id);
         }
-       
+
 
         public async Task AddAsync(Surface entity)
         {
@@ -44,9 +44,19 @@ namespace SAE_API_Gestion.Models.DataManager
             await gestionDbContext.SaveChangesAsync();
         }
 
+
         public Task<ActionResult<Surface>> GetByStringAsync(string str)
         {
             throw new NotImplementedException("Pas besoin de GetByString");
         }
+
+        public async Task<ActionResult<IEnumerable<Surface>>> GetSurfacesBySalleIdAsync(int salleId)
+        {
+            return await gestionDbContext.Surfaces
+                .Include(s => s.PositionSurface)  
+                .Where(s => s.SalleId == salleId)
+                .ToListAsync();
+        }
+
     }
 }

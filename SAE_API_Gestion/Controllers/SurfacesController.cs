@@ -15,12 +15,15 @@ namespace SAE_API_Gestion.Controllers
     public class SurfacesController : ControllerBase
     {
         private readonly IDataRepository<Surface> dataRepository;
+        private readonly IDataRepositorySurface dataRepositorySurface;
 
 
 
-        public SurfacesController(IDataRepository<Surface> dataRepo)
+
+        public SurfacesController(IDataRepository<Surface> dataRepo, IDataRepositorySurface dataRepositorySurface)
         {
             this.dataRepository = dataRepo;
+            this.dataRepositorySurface = dataRepositorySurface;
         }
 
         // GET: api/Equipements
@@ -47,8 +50,27 @@ namespace SAE_API_Gestion.Controllers
 
             return surface;
         }
-       
-        
+
+        [HttpGet]
+        [Route("[action]/{salleId}")]
+        [ActionName("GetSurfacesBySalleId")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]  // Réponse pour No Content
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<IEnumerable<Surface>>> GetSurfacesBySalleId(int salleId)
+        {
+            var surfaces = await dataRepositorySurface.GetSurfacesBySalleIdAsync(salleId);
+
+            if (surfaces.Value == null || !surfaces.Value.Any())
+            {
+                return NoContent();  // Retourne un 204 si aucune surface n'est trouvée
+            }
+
+            return Ok(surfaces.Value);  // Retourne les surfaces si elles existent
+        }
+
+
+
         // PUT: api/Equipements/5
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

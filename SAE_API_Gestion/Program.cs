@@ -32,7 +32,10 @@ builder.Services.AddScoped<IDataRepository<PositionSurface>, PositionSurfaceMana
 builder.Services.AddScoped<IDataRepository<Salle>, SalleManager>();
 
 builder.Services.AddScoped<IDataRepositorySalle, SalleManager>();
-builder.Services.AddScoped<IDataRepository<Surface>, SurfaceManager>();
+builder.Services.AddScoped<IDataRepositorySurface, SurfaceManager>();  // Enregistrement de l'interface et de l'implémentation
+builder.Services.AddScoped<IDataRepository<Surface>, SurfaceManager>();  // Enregistrement de l'interface pour les opérations de CRUD de Surface
+;
+
 builder.Services.AddScoped<IDataRepository<TypeEquipement>, TypeEquipementManager>();
 builder.Services.AddScoped<IDataRepository<TypeSalle>, TypeSalleManager>();
 builder.Services.AddScoped<IDataRepository<UniteMesurer>, UniteMesurerManager>();

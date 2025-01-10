@@ -21,7 +21,6 @@ namespace SAE_API_Gestion.Models.DataManager
         public async Task<ActionResult<IEnumerable<Salle>>> GetAllAsync()
         {
             return await gestionDbContext.Salles
-                .Include(s => s.Batiment)
                 .Include(s => s.TypeSalle)
                 .ToListAsync();
         }
@@ -29,7 +28,6 @@ namespace SAE_API_Gestion.Models.DataManager
         public async Task<ActionResult<Salle>> GetByIdAsync(int id)
         {
             return await gestionDbContext.Salles
-                .Include(s => s.Batiment)
                 .Include(s => s.TypeSalle) 
                 .FirstOrDefaultAsync(s => s.SalleId == id);
         }
@@ -48,7 +46,6 @@ namespace SAE_API_Gestion.Models.DataManager
         public async Task<ActionResult<Salle>> GetByStringAsync(string str)
         {
             return await gestionDbContext.Salles
-                .Include(s => s.Batiment)
                 .Include(s => s.TypeSalle)
                 .FirstOrDefaultAsync(s => s.Nom == str);
         }

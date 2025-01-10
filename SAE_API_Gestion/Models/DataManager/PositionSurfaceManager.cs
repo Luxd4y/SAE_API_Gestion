@@ -19,21 +19,18 @@ namespace SAE_API_Gestion.Models.DataManager
         public async Task<ActionResult<IEnumerable<PositionSurface>>> GetAllAsync()
         {
             return await gestionDbContext.PositionSurfaces
-                .Include(p => p.Surfaces)
                 .ToListAsync();
         }
 
         public async Task<ActionResult<PositionSurface>> GetByIdAsync(int id)
         {
             return await gestionDbContext.PositionSurfaces
-                .Include(p => p.Surfaces)
                 .FirstOrDefaultAsync(p => p.PositionSurfaceId == id);
         }
 
         public async Task<ActionResult<PositionSurface>> GetByStringAsync(string str)
         {
             return await gestionDbContext.PositionSurfaces
-                .Include(p => p.Surfaces)
                 .FirstOrDefaultAsync(p => p.Nom == str);
         }
 
@@ -47,7 +44,6 @@ namespace SAE_API_Gestion.Models.DataManager
         {
             gestionDbContext.Entry(positionSurface).State = EntityState.Modified;
             positionSurface.Nom = entity.Nom;
-            positionSurface.Surfaces = entity.Surfaces;
             await gestionDbContext.SaveChangesAsync();
         }
 

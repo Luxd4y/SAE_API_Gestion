@@ -32,6 +32,7 @@ public partial class Salle
     public int? Capacite { get; set; }
 
     [ForeignKey("BatimentId")]
+    [JsonIgnore]
     public virtual Batiment? Batiment { get; set; }
 
     [InverseProperty("Salle")]

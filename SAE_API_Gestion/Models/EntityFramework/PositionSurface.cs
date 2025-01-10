@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
 namespace SAE_API_Gestion.Models.EntityFramework;
@@ -18,5 +19,6 @@ public partial class PositionSurface
     public string Nom { get; set; } = null!;
 
     [InverseProperty("PositionSurface")]
+    [JsonIgnore]
     public virtual ICollection<Surface> Surfaces { get; set; } = new List<Surface>();
 }
